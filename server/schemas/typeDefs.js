@@ -1,5 +1,5 @@
 const typeDefs = `
-  type Category {
+  type Genre {
     _id: ID
     name: String
   }
@@ -11,7 +11,7 @@ const typeDefs = `
     image: String
     quantity: Int
     price: Float
-    category: Category
+    genre: Genre
   }
 
   type Wishlist {
@@ -53,8 +53,8 @@ const typeDefs = `
   }
 
   type Query {
-    categories: [Category]
-    games(category: ID, name: String): [Game]
+    genres: [Genre]
+    games(genre: ID, name: String): [Game]
     game(_id: ID!): Game
     user: User
     order(_id: ID!): Order

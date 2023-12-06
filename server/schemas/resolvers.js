@@ -1,19 +1,19 @@
-const { User, Game, Category, Order } = require('../models');
+const { User, Game, Genre, Order, Wishlist } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    // Query to get all categories
-    categories: async () => {
-      return await Category.find();
+    // Query to get all genres
+    genres: async () => {
+      return await Genre.find();
     },
-    // Query to get all games with optional category and name filters
-    games: async (parent, { category, name }) => {
+    // Query to get all games with optional genre and name filters
+    games: async (parent, { genre, name }) => {
       const params = {};
 
-      if (category) {
-        params.category = category;
+      if (genre) {
+        params.genre = genre;
       }
 
       if (name) {
@@ -22,14 +22,14 @@ const resolvers = {
         };
       }
 
-      return await Game.find(params).populate('category');
+      return await Game.find(params).populate('genre');
     },
     // Query to get a specific game by ID
     game: async (parent, { _id }) => {
-      return await Game.findById(_id).populate('category');
+      return await Game.findById(_id).populate('genre');
     },
-     // Query to get user's wishlist
-     wishlist: async (parent, args, context) => {
+    // Query to get user's wishlist
+    wishlist: async (parent, args, context) => {
       if (context.user) {
         const wishlist = await Wishlist.findOne({ user: context.user._id }).populate('games');
         return wishlist;
@@ -37,12 +37,12 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    // Query to get user information, including orders with populated products and categories
+    // Query to get user information, including orders with populated products and genres
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.games',  
-          populate: 'category'
+          populate: 'genre'
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -52,12 +52,12 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    // Query to get a specific order by ID with populated products and categories
+    // Query to get a specific order by ID with populated products and genres
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: 'orders.games', 
-          populate: 'category'
+          populate: 'genre'
         });
 
         return user.orders.id(_id);
