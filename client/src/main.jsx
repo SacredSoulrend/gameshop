@@ -2,12 +2,12 @@ import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
-import Home from './pages/Home';
-import Error from './pages/Error';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Profile from './pages/Profile';
-import Games from './pages/Games';
+import Home from './pages/home/HomePage.jsx';
+import Error from './pages/error/Error.jsx';
+import Login from './pages/login/Login.jsx';
+import Signup from './pages/signup/Signup.jsx';
+import Store from './pages/store';
+import Games from './pages/game';
 
 const router = createBrowserRouter([
   {
@@ -25,10 +25,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
-        path: '/profile', 
-        element: <Profile />
+        path: '/store', 
+        element: <Store />
       }, {
-        path: '/games/:id',
+        path: '/games',
         element: <Games />
       }
     ]
