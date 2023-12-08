@@ -3,6 +3,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
+const apiKey = config.RAWG_API_KEY;
 require('dotenv').config();
 
 
@@ -15,6 +16,11 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
+
+fetch(`https://rawg.io/api/games?token&key=${apiKey}`)
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
