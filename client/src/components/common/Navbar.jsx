@@ -5,39 +5,71 @@ import { BsRssFill, BsSteam, BsTwitch, BsYoutube} from "react-icons/bs";
 import { MdClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSidebarStatus, setSidebarOff, setSidebarOn } from '../../redux/store/sidebarSlice';
+import Auth from "../../utils/auth";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const sidebarStatus = useSelector(selectSidebarStatus);
+
+  function showAuthentication() {
+    if (Auth.loggedIn()) {
+      return (
+        <ul className='navbar-nav'>
+          <li className='nav-item'>
+            <Link to='/profile' className='nav-link'>
+              Profile
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <a href='/' className='nav-link' onClick={() => Auth.logout()}>
+              Logout
+            </a>
+          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className='navbar-nav'>
+          <li className='nav-item'>
+            <Link to='/signup' className='nav-link'>
+              Signup
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to='/login' className='nav-link'>
+              Login
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+  }
 
   return (
     <NavbarWrapper className="d-flex align-items-center">
       <div className='container w-100'>
         <div className='navbar-content'>
           <div className='brand-and-toggler d-flex align-items-center justify-content-between'>
-            <Link to = "/" className="navbar-brand text-white text-uppercase no-wrap">cool <span>games</span></Link>
+            <Link to="/" className="navbar-brand text-white text-uppercase no-wrap">cool <span>games</span></Link>
             <button type='button' className='navbar-show-btn text-white' onClick={() => dispatch(setSidebarOn())}>
-              <HiOutlineMenuAlt3 size = { 25 } />
+              <HiOutlineMenuAlt3 size={25} />
             </button>
           </div>
 
           <div className={`navbar-collapse ${sidebarStatus ? "show" : " "}`}>
             <button type="button" className='navbar-hide-btn' onClick={() => dispatch(setSidebarOff())}>
-              <MdClose size = { 25 } />
+              <MdClose size={25} />
             </button>
 
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <Link to = "/" className='nav-link'>home</Link>
+                <Link to="/" className='nav-link'>home</Link>
               </li>
               <li className='nav-item'>
-                <Link to = "/creators" className='nav-link'>creators</Link>
+                <Link to="/stores" className='nav-link'>stores</Link>
               </li>
               <li className='nav-item'>
-                <Link to = "/stores" className='nav-link'>stores</Link>
-              </li>
-              <li className='nav-item'>
-                <Link to = "/games" className='nav-link'>games</Link>
+                <Link to="/games" className='nav-link'>games</Link>
               </li>
             </ul>
 
