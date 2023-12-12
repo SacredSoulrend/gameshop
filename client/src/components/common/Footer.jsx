@@ -10,7 +10,7 @@ const Footer = () => {
             <a href="#" className='navbar-brand text-white text-uppercase no-wrap d-block'>
               cool <span>games</span>
             </a>
-            <p className='para-text'>"Level up in the game of life with the resilience of a respawn, the strategy of a speed run, and the courage to face each challenge as a boss battle. Your journey is the ultimate quest—press start, embrace the adventure, and let your victories be the high score of your legacy."</p>
+            <p className='para-text'>Lorem ipsum dolor sitamt consectue adispicing duis soolici tudin ague suisomid. Nulla vullam dolor.</p>
           </div>
 
           <div className='footer-item'>

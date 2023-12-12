@@ -1,43 +1,17 @@
-import { Outlet } from 'react-router-dom';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-
-import Nav from './components/Nav';
-import { StoreProvider } from './utils/GlobalState';
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+import "./styles/main.scss";
+import { Provider } from 'react-redux';
+import AppRouter from "./routers/AppRouter";
+import store from "./redux/store/store";
 
 function App() {
+
   return (
-    <ApolloProvider client={client}>
-      <StoreProvider>
-        <Nav />
-        <Outlet />
-      </StoreProvider>
-    </ApolloProvider>
-  );
+    <div className="App">
+      <Provider store={ store }>
+        <AppRouter />
+      </Provider>
+    </div>
+  )
 }
 
-export default App;
+export default App
