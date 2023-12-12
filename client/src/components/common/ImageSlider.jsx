@@ -115,4 +115,4 @@ const ImageSliderWrapper = styled.div`
       transform: scale(1.4);
     }
   }
-  `;
+`;

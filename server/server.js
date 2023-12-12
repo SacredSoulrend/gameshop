@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const Router = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -42,6 +43,7 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
+  
 
   db.once('open', () => {
     app.listen(PORT, () => {
