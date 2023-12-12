@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 import GameItem from './GameItem';
 import PropTypes from "prop-types";
+ import Api from '../../Api';
+ import { useEffect } from 'react';
 
 const GameList = ({ games, sliceValue = games.length }) => {
   // by default we are going to display all the games fetched from api if not any slicevalue is mentioned
+  useEffect(()=>{
+    getGameList()
+  },[])
+  const getGameList=()=>{
+    Api.getGameList.then((resp)=> {
+      console.log(resp.data.results);
+    })
+  }
   return (
     <GameListWrapper>
       <div className='card-list'>
