@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import GameItem from './GameItem';
 import PropTypes from "prop-types";
- import Api from '../../Api';
  import { useEffect } from 'react';
 
 const GameList = ({ games, sliceValue = games.length }) => {

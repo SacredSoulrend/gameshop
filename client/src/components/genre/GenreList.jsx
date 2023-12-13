@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Api from '../../Api';
 import { useEffect } from 'react';
 
 const GenreList = () => {
