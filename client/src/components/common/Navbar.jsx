@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
-import { BsRssFill, BsSteam, BsTwitch, BsYoutube} from "react-icons/bs";
 import { MdClose } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaUser } from 'react-icons/fa';
+import { BsBoxArrowInRight } from 'react-icons/bs';
 import { selectSidebarStatus, setSidebarOff, setSidebarOn } from '../../redux/store/sidebarSlice';
 
 const Navbar = () => {
@@ -12,64 +13,70 @@ const Navbar = () => {
 
   return (
     <NavbarWrapper className="d-flex align-items-center">
-      <div className='container w-100'>
-        <div className='navbar-content'>
-          <div className='brand-and-toggler d-flex align-items-center justify-content-between'>
-            <Link to = "/" className="navbar-brand text-white text-uppercase no-wrap">cool <span>games</span></Link>
-            <button type='button' className='navbar-show-btn text-white' onClick={() => dispatch(setSidebarOn())}>
-              <HiOutlineMenuAlt3 size = { 25 } />
+      <div className="container w-100">
+        <div className="navbar-content">
+          <div className="brand-and-toggler d-flex align-items-center justify-content-between">
+            <Link to="/" className="navbar-brand text-white text-uppercase no-wrap">
+              Game <span>Shop</span>
+            </Link>
+            <button type="button" className="navbar-show-btn text-white" onClick={() => dispatch(setSidebarOn())}>
+              <HiOutlineMenuAlt3 size={25} />
             </button>
           </div>
 
-          <div className={`navbar-collapse ${sidebarStatus ? "show" : " "}`}>
-            <button type="button" className='navbar-hide-btn' onClick={() => dispatch(setSidebarOff())}>
-              <MdClose size = { 25 } />
+          <div className={`navbar-collapse ${sidebarStatus ? 'show' : ''}`}>
+            <button type="button" className="navbar-hide-btn" onClick={() => dispatch(setSidebarOff())}>
+              <MdClose size={25} />
             </button>
 
-            <ul className='navbar-nav'>
-              <li className='nav-item'>
-                <Link to = "/" className='nav-link'>home</Link>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  home
+                </Link>
               </li>
-              <li className='nav-item'>
-                <Link to = "/creators" className='nav-link'>creators</Link>
+              <li className="nav-item">
+                <Link to="/creators" className="nav-link">
+                  creators
+                </Link>
               </li>
-              <li className='nav-item'>
-                <Link to = "/stores" className='nav-link'>stores</Link>
+              <li className="nav-item">
+                <Link to="/stores" className="nav-link">
+                  stores
+                </Link>
               </li>
-              <li className='nav-item'>
-                <Link to = "/games" className='nav-link'>games</Link>
+              <li className="nav-item">
+                <Link to="/games" className="nav-link">
+                  games
+                </Link>
               </li>
             </ul>
 
-            <ul className='connect-list d-flex justify-content-center align-items-center mt-5 flex-wrap'>
-              <li className='text-uppercase fw-7 w-100 connect-text mb-2'>connect</li>
-              <li className='connect-item'>
-                <Link to = "/" className='connect-link'>
-                  <BsRssFill />
-                </Link>
-              </li>
-              <li className='connect-item'>
-                <Link to = "/" className='connect-link'>
-                  <BsSteam size = { 18 } />
-                </Link>
-              </li>
-              <li className='connect-item'>
-                <Link to = "/" className='connect-link'>
-                  <BsTwitch size = { 18 } />
-                </Link>
-              </li>
-              <li className='connect-item'>
-                <Link to = "/" className='connect-link'>
-                  <BsYoutube size = { 19 } />
-                </Link>
-              </li>
+            <ul className="connect-list d-flex justify-content-center align-items-center mt-5 flex-wrap">
+              <li className="text-uppercase fw-7 w-100 connect-text mb-2">connect</li>
+              <div className="nav-center">
+                <div className="nav-header">
+                  <ul className="connect-list">
+                    <li className="connect-item">
+                      <Link to="/Signup" className="connect-link">
+                        <FaUser size={18} /> Signup
+                      </Link>
+                    </li>
+                    <li className="connect-item">
+                      <Link to="/Login" className="connect-link">
+                        <FaUser size={18} /> Login
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </ul>
           </div>
         </div>
       </div>
     </NavbarWrapper>
-  )
-}
+  );
+};
 
 export default Navbar;
 

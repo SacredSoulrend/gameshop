@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/react": "^14.0.0",
-    "@apollo/client": "^3.7.15",
     "axios": "^1.4.0",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",

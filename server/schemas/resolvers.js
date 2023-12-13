@@ -22,14 +22,7 @@ const resolvers = {
 
       return { token, user };
     },
-    // Mutation to update user information
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-      }
 
-      throw AuthenticationError;
-    },
     // Mutation for user login
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
