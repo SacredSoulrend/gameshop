@@ -50,3 +50,38 @@ export const selectSingleGame = (state) => state.game.gamesSingle;
 export const selectSingleGameStatus = (state) => state.game.gamesSingleStatus;
 
 export default gameSlice.reducer;
+
+// import { createSlice } from '@reduxjs/toolkit';
+// import { fetchAsyncGameDetails, fetchAsyncGames } from "../utils/gameUtils";
+
+// const initialState = {
+//   games: [],
+//   selectedGame: null,
+//   status: 'idle',
+//   error: null,
+// };
+
+// const gamesSlice = createSlice({
+//   name: 'games',
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchAsyncGames.pending, (state) => {
+//         state.status = 'loading';
+//       })
+//       .addCase(fetchAsyncGames.fulfilled, (state, action) => {
+//         state.status = 'succeeded';
+//         state.games = action.payload;
+//       })
+//       .addCase(fetchAsyncGames.rejected, (state, action) => {
+//         state.status = 'failed';
+//         state.error = action.error.message;
+//       })
+//       .addCase(fetchAsyncGameDetails.fulfilled, (state, action) => {
+//         state.selectedGame = action.payload;
+//       });
+//   },
+// });
+
+// export default gamesSlice.reducer;
