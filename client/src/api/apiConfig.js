@@ -1,3 +1,3 @@
-const apiUrl = '/api';
+// const apiUrl = '/api';
 
-export default apiUrl;
+// export default apiUrl;
